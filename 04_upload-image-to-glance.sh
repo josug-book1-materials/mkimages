@@ -1,2 +1,4 @@
-glance image-create name=centos-base is_public=false \
-disk_format=qcow2 container_format=bare < /tmp/centos6-base.qcow2
+glance image-create --name nakajima-centos-base-test --is-public false \
+--disk-format qcow2 --container-format bare \
+--file /tmp/centos6-base.qcow2 \
+--progress
