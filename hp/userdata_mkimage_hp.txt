@@ -1,0 +1,29 @@
+#!/bin/bash
+sed -i -e 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+chkconfig iptables off
+chkconfig ip6tables off
+yum update -q -y
+yum install -q -y gcc make git parted \
+python-devel python-crypto python-pip mysql-devel \
+libxml2 libxml2-devel libxslt libxslt-devel \
+libffi libffi-devel openssl-devel libyaml libyaml-devel
+yum clean all
+for i in 0 1 2 3
+do
+cat << EOF > /etc/sysconfig/network-scripts/ifcfg-eth$i
+DEVICE="eth$i"
+BOOTPROTO="dhcp"
+IPV6INIT="yes"
+MTU="1500"
+NM_CONTROLLED="no"
+ONBOOT="yes"
+TYPE="Ethernet"
+PEERDNS="no"
+EOF
+done
+cat << EOF > /etc/resolv.conf
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF
+echo "NOZEROCONF=yes" >> /etc/sysconfig/network
+
