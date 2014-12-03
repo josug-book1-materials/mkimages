@@ -2,6 +2,7 @@
 sed -i -e 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 chkconfig iptables off
 chkconfig ip6tables off
+yum update -q -y ca-certificates --disablerepo=epel
 yum update -q -y
 yum install -q -y gcc make git parted \
 python-devel python-crypto python-pip mysql-devel \
