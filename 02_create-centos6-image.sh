@@ -4,6 +4,6 @@ virt-install --virt-type kvm --name centos6 \
 --nographics --noautoconsole \
 --disk /tmp/centos6.qcow2,format=qcow2 \
 --network network=default \
---location=http://ftp.iij.ad.jp/pub/linux/centos/6.5/os/x86_64/ \
+--location=http://ftp.iij.ad.jp/pub/linux/centos/6/os/x86_64/ \
 --initrd-inject centos6-ks.cfg \
 --extra-args="ks=file:/centos6-ks.cfg console=tty0 console=ttyS0,115200n8 serial"
